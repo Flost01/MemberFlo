@@ -6,25 +6,15 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
+$ide = $_GET['id_projet'];
+$tache = $pdo->query("SELECT * FROM users JOIN tache ON tache.id=users.id JOIN projets ON tache.id_projet=projets.id_projet WHERE tache.id_projet=$ide");
+$taches = $tache->fetchAll(PDO::FETCH_ASSOC);
 
-$id_projet = $_GET['id_projet'];
-$query = $_GET['query'];
-
-// Préparer la requête pour éviter les injections SQL
-$stmt = $pdo->prepare("
-    SELECT * 
-    FROM tache
-    JOIN users ON tache.id = users.id
-    WHERE tache.id_projet = :id_projet AND tache.nom_tache LIKE :query
-");
-$stmt->bindParam(':id_projet', $id_projet);
-$stmt->bindValue(':query', '%' . $query . '%'); // Ajoute des jokers pour la recherche
-$stmt->execute();
-
-$taches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+// Générer le HTML pour les résultats en fonction des statuts
+$toDoTasks = '';
+$inProgressTasks = '';
+$completedTasks = '';
 $i=1;
-
 foreach ($taches as $ta) {
     echo '<tr>';
     echo '<td>' . $i . '</td>';

@@ -2,27 +2,28 @@
 session_start();
 require 'config.php';
 
-// Vérifiez si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['message' => 'Non autorisé.']);
+    http_response_code(403);
+    echo 'Non autorisé';
     exit;
 }
 
-// Traitement de l'ajout d'un projet
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom_tache = $_POST['name'];
-    $delai = $_POST['delai'];
-    $user = $_POST['user'];
-    $date =  date('Y-m-d H:i:s');
-    $proj = $_GET['id_projet'];
+$id_projet = $_POST['id_projet'];
+$nom_tache = $_POST['name'];
+$delai = $_POST['delai'];
+$id_user = $_POST['user'];
 
-    // Préparez et exécutez la requête
-    $stmt = $pdo->prepare("INSERT INTO tache (nom_tache,create_at,delai,id,id_projet) VALUES (:nom_tache,:date,:delai,:user,:proj)");
-    $stmt->bindParam(':nom_tache', $nom_tache);
-    $stmt->bindParam(':date', $date);
-    $stmt->bindParam(':delai', $delai);
-    $stmt->bindParam(':user', $user);
-    $stmt->bindParam(':proj', $proj);
-    $stmt->execute();
-    header("Location: tache.php?id_projet=$proj");}
+$stmt = $pdo->prepare("INSERT INTO tache (nom_tache, delai, id_projet, id, create_at, statut) VALUES (:nom_tache, :delai, :id_projet, :id_user, NOW(), 'Enregistrée')");
+$stmt->bindParam(':nom_tache', $nom_tache);
+$stmt->bindParam(':delai', $delai);
+$stmt->bindParam(':id_projet', $id_projet);
+$stmt->bindParam(':id_user', $id_user);
+
+if ($stmt->execute()) {
+    http_response_code(200);
+    echo 'Tâche ajoutée avec succès';
+} else {
+    http_response_code(500);
+    echo 'Erreur lors de l\'ajout de la tâche';
+}
 ?>
