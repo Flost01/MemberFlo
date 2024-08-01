@@ -20,7 +20,7 @@ include 'squelette.php'
             <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
             <button id="editProfileBtn">Modifier le profil</button>
         </section>
-    </main>
+    
 
     <div id="modalOverlay" style="display:none;">
     <div id="editProfileModal">
@@ -33,7 +33,7 @@ include 'squelette.php'
         </form>
     </div>
 </div>
-
+</main>
     <script>
         document.getElementById('editProfileBtn').onclick = function() {
             document.getElementById('modalOverlay').style.display = 'flex';
@@ -52,7 +52,7 @@ include 'squelette.php'
                 location.reload();
             });
         };
-         // Fermer la modal en cliquant en dehors de celle-ci
+        
       document.getElementById('modalOverlay').onclick = function(event) {
         if (event.target === this) {
             this.style.display = 'none';

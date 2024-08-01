@@ -24,7 +24,7 @@
     </main>
 
     <script>
-        fetch('https://jsonplaceholder.typicode.com/posts') // Remplacez par l'URL de votre API
+        fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
             .then(data => {
                 const articlesContainer = document.getElementById('articlesContainer');

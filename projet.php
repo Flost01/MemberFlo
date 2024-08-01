@@ -6,18 +6,28 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
-if ($_SESSION['role']!=='chef'):
-    header("Location: liste_projet.php");
-endif;
 
-$stmt = $pdo->query("SELECT * FROM projets");
-$projets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ($_SESSION['role']=='chef'):
+    $stmt = $pdo->query("SELECT * FROM projets");
+    $projets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+else:
+    $idt=$_SESSION['user_id'];
+    $stmt = $pdo->query("SELECT projets.id_projet, projets.nom_projet, projets.description 
+        FROM projets 
+        JOIN tache ON projets.id_projet = tache.id_projet 
+        JOIN users ON tache.id = users.id 
+        WHERE users.id = $idt 
+        GROUP BY projets.id_projet");
+    $projets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+endif;
 include 'squelette.php'
 ?>
     <main>
         <div class="modif">
              <h1 style="margin-left:1rem;">Listes des projets</h1>
+             <?php if ($_SESSION['role'] == 'chef') : ?>
              <button id="addProjet">Ajouter<i class="ri-add-circle-line"></i></button>
+             <?php endif; ?>
         </div>
        
         <div id="afficherProjet" class="art">
