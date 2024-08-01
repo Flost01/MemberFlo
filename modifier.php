@@ -12,24 +12,34 @@ require 'config.php';
 
     $tache=$pdo->query("SELECT * FROM `tache` JOIN `users` ON tache.id=users.id WHERE `id_tache`=$ide AND tache.id=$user_id");
     $taches=$tache->fetch();
+<<<<<<< HEAD
       // Ajouter une notification pour l'utilisateur assigné
       $notificationStmt = $pdo->prepare("INSERT INTO notification (texte,user_id ) VALUES (?, ?)");
       
+=======
+
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     if($taches['id']==$user_id){
       $sts=$taches['nom_tache'];
       $st=$taches['statut'];
       $use=$taches['name'];
       $text ="Le status de la tache $sts a ete modifier a $st par $use";
+<<<<<<< HEAD
       $user_id=8;
       $notificationStmt->execute([$text,$user_id]);
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     }else{
       $tache=$pdo->query("SELECT * FROM `tache` WHERE `id_tache`=$ide");
       $taches=$tache->fetch();
       $sts=$taches['nom_tache'];
       $st=$taches['statut'];
       $text ="Le status de la tache $sts a ete modifier a $st par le chef";
+<<<<<<< HEAD
       $user_id=$taches['id'];
       $notificationStmt->execute([$text ,$user_id]);
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     }
     
     $req= $pdo->prepare("INSERT INTO `history`(`description`, `create_at`) VALUES (?,?)");

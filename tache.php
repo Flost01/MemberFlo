@@ -20,6 +20,7 @@ $taches = $tache->fetchAll(PDO::FETCH_ASSOC);
 $stm = $pdo->prepare("SELECT * FROM chat JOIN users ON chat.user_id = users.id WHERE chat.project_id = ? ORDER BY chat.timestamp");
 $stm->execute([$ide]);
 $messages = $stm->fetchAll();
+<<<<<<< HEAD
 
 $currentUserId = $_SESSION['user_id'];
 $notificationQuery = $pdo->prepare("SELECT * FROM notification WHERE user_id = ?");
@@ -27,6 +28,8 @@ $notificationQuery->execute([$currentUserId]);
 $notifications = $notificationQuery->fetchAll(PDO::FETCH_ASSOC);
 $nbre=count($notifications);
 
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
 include 'squelette.php';
 ?>
 <main>
@@ -35,6 +38,7 @@ include 'squelette.php';
         <?php if ($_SESSION['role'] == 'chef') : ?>
             <button id="addProjet">Ajouter<i class="ri-add-circle-line"></i></button>
         <?php endif; ?>
+<<<<<<< HEAD
         <button id="notificationButton" class="but"><i class="ri-notification-2-fill"></i><?php echo $nbre ?></button>
 
     </div>
@@ -47,6 +51,10 @@ include 'squelette.php';
         </ul>
         <button onclick="closePopup()" class="but">Fermer</button>
     </div>
+=======
+    </div>
+
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     <!-- Champ de recherche -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Rechercher une tâche..." />
@@ -140,8 +148,13 @@ include 'squelette.php';
             <div id="imagePopup" class="popup" style="display:none">
                 <div class="popup-content">
                     <div style="display:flex; justify-content: space-between;">
+<<<<<<< HEAD
                         <h2>Envoyer une image</h2>
                         <span class="close-button" id="closePopup"><i class="ri-close-circle-fill"></i></span>
+=======
+                    <h2>Envoyer une image</h2>
+                    <span class="close-button" id="closePopup"><i class="ri-close-circle-fill"></i></span>
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
                     </div>
                     <input type="file" id="chatImageInput" accept="image/*" />
                 </div>
@@ -172,6 +185,7 @@ include 'squelette.php';
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/3.1.0/lib/js/emojione.min.js"></script>
 <script>
+<<<<<<< HEAD
     function openPopup() {
         document.getElementById('notificationPopup').style.display = 'block';
     }
@@ -190,6 +204,17 @@ include 'squelette.php';
     document.getElementById('closePopup').addEventListener('click', function() {
         document.getElementById('imagePopup').style.display = 'none';
     });
+=======
+     document.getElementById('images').addEventListener('click', function() {
+            // Ouvrir la popup
+            document.getElementById('imagePopup').style.display = 'block';
+        });
+
+        // Fermer la popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('imagePopup').style.display = 'none';
+        });
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     // Affichage de la modal de chat
     document.getElementById('openChatButton').onclick = function() {
         document.getElementById('chatModal').style.display = 'flex';
@@ -201,6 +226,7 @@ include 'squelette.php';
         document.getElementById('chatModal').style.display = 'none';
     };
 
+<<<<<<< HEAD
     // //supprimer une notification
     // const deleteNotifIcons = document.querySelectorAll('.deleteNotif');
     // deleteNotifIcons.forEach(icon => {
@@ -224,6 +250,8 @@ include 'squelette.php';
     //     };
     //     xhr.send('notification_id=' + encodeURIComponent(notificationId));
     // }
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     // Fonction de recherche instantanée avec AJAX
     document.getElementById('searchInput').addEventListener('input', function() {
         const searchTerm = this.value;

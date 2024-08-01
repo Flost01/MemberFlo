@@ -187,7 +187,11 @@ label {
     margin: 0;
 }
 
+<<<<<<< HEAD
 #addProjet,#editProfileBtn{
+=======
+#addProjet,#editProfileBtn {
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     background-color: #007BFF;
     color: white;
     border: none;
@@ -345,7 +349,11 @@ footer {
 .chat-input {
     display: flex;
 }
+<<<<<<< HEAD
 .chat-input button,.but{
+=======
+.chat-input button {
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
     margin-left: 10px;
     padding: 5px 10px;
     background-color: #007BFF;
@@ -381,7 +389,10 @@ footer {
     left: 62%;
     background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
 .popup-content {
     background-color: #fff;
     margin: 15% auto;
@@ -391,6 +402,7 @@ footer {
     text-align: center;
     width: 90%; /* Largeur de la popup */
 }
+<<<<<<< HEAD
 .poo{
     /* z-index: 100; */
    text-align: center;
@@ -401,6 +413,8 @@ footer {
    color: white;
 }
 
+=======
+>>>>>>> 161084213f9226283744fdd74cebc48852e929ab
 /* Responsive design */
 @media (max-width: 768px) {
     header {
